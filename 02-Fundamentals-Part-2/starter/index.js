@@ -129,3 +129,20 @@ const listOfNeighbours = [
   ["Spain"],
   ["Norway", "Sweden", "Russia"],
 ];
+
+for (let i = 0; i < listOfNeighbours.length; i++) {
+  for (let y = 0; y < listOfNeighbours[i].length; y++)
+    console.log(`Neighbour: ${listOfNeighbours[i][y]}`);
+}
+
+// LECTURE: The while Loop
+const percentages3 = [];
+
+let y = 0;
+while (y < populations.length) {
+  const perc = percentageOfWorld(populations[y]);
+  console.log(percentages3.push(perc));
+  y++;
+}
+
+console.log(percentages3);
