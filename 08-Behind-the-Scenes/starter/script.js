@@ -157,18 +157,115 @@
 ///////////////////////////////////////
 // Objects vs. primitives
 
-let age = 30;
-let oldAge = age;
-age = 31;
-console.log(age);
-conaole.log(oldAge);
+// let age = 30;
+// let oldAge = age;
+// age = 31;
+// console.log(age);
+// conaole.log(oldAge);
 
-const me = {
-  name: 'Diana',
-  age: 30,
+// const me = {
+//   name: 'Diana',
+//   age: 30,
+// };
+
+// const friend = me;
+// friend.age = 27;
+// console.log('Friend:', friend);
+// console.log('Me:', me);
+
+////////////////////////////////////////
+// Destructuring arrays
+
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Foccacia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0,
+      close: 24,
+    },
+  },
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+
+  orderDelivery: function ({ starterIndex = 1, mainIndex, time, address }) {
+    console.log(
+      `Order received: ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}.`
+    );
+  },
 };
 
-const friend = me;
-friend.age = 27;
-console.log('Friend:', friend);
-console.log('Me:', me);
+restaurant.orderDelivery({
+  time: '21:30',
+  addresss: 'Via del Sole, 21',
+  mainIndex: 2,
+  starterIndex: 2,
+});
+
+const { name, openingHours, categories } = restaurant;
+console.log(name, openingHours, categories);
+
+const {
+  name: restaurantName,
+  openingHours: hours,
+  categories: tags,
+} = restaurant;
+
+console.log(restaurantName, hours, tags);
+
+// Default values
+const { menu = [], starterMenu: starters = [] } = restaurant;
+console.log(menu, starters);
+
+// Mutating variables:
+let a = 111;
+let b = 999;
+const obj = { a: 23, b: 7, c: 14 };
+({ a, b } = obj);
+console.log(a, b);
+
+// Nested objects
+const {
+  fri: { open: o, close: c },
+} = openingHours;
+console.log(o, c);
+
+// console.log(restaurant.order(2, 0));
+
+// Switching variables
+// const temp = main;
+// main = secondary;
+// secondary = temp;
+// console.log(main, secondary);
+
+// [main, secondary] = [secondary, main];
+// console.log(main, secondary);
+
+// Receive 2 return values from a function
+// const [starter, mainCourse] = restaurant.order(2, 0);
+// console.log(starter, mainCourse);
+
+// // Nested destructuring:
+// const nested = [2, 4, [5, 6]];
+// // const [i, , j] = nested;
+// // console.log(i, j);
+
+// const [i, , [j, k]] = nested;
+// console.log(i, j, k);
+
+// // Default values
+// const [p = 1, q = 1, r = 1] = [8, 9];
+// console.log(p, q, r);
