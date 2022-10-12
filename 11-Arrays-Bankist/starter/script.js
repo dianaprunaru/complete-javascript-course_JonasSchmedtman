@@ -65,12 +65,99 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
+
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+// 142. Simple Array Methods
+
+// let arr = ['a', 'b', 'c', 'd', 'e'];
+
+// // SLICE
+// // same as splice but doesn't mutate the array
+// console.log(arr.slice(2, 4));
+// console.log(arr.slice(-2)); /* the last 2 elements of the array */
+// console.log(arr.slice(1, -2)); /* ['b', 'c'] */
+// console.log(arr.slice()); /*['a', 'b', 'c', 'd', 'e'] */
+// console.log([...arr]);
+
+// // SPLICE
+// // same as slice but it mutates the array's state; more useful
+// // console.log(arr.splice(2)); /* ['c', 'd', 'e'] */
+// arr.splice(-1); /* deletes the las element of the array */
+// arr.splice(1, 2); /* deletes 2 elements starting with position 1 */
+// console.log(arr); /* ['a', 'd'] */
+
+// // REVERSE
+// // it mutates the state of the array
+// arr = ['a', 'b', 'c', 'd', 'e'];
+// const arr2 = ['j', 'i', 'h', 'g', 'f'];
+// console.log(arr2.reverse()); /* ['f', 'g', 'h', 'i', 'j'] */
+
+// // CONCAT
+// const letters = arr.concat(arr2);
+// console.log(letters);
+// console.log([...arr, ...arr2]); /*also a concatenator */
+
+// // JOIN
+// console.log(letters.join(' - '));
+
+/////////////////////////////////////////////////
+// 143. The new at Method
+
+// const arr = [23, 11, 64];
+// console.log(arr[0]);
+// console.log(arr.at(0));
+
+// /* Getting the last element of the array: */
+// console.log(arr[arr.length - 1]);
+// console.log(arr.slice(-1)[0]);
+// console.log(arr.at(-1));
+
+/////////////////////////////////////////////////
+// 144. Looping Arrays: forEach
+
+// for (const [i, movement] of movements) {
+//   if (movement > 0) {
+//     console.log(`Movement ${i + 1}: You deposited ${movement}`);
+//   } else {
+//     `Movement ${i + 1}: You withdrew ${Math.abs(movement)}`;
+//   }
+// }
+
+// console.log('---------- FOR EACH ----------');
+// movements.forEach(function (mov, i, arr) {
+//   if (mov > 0) {
+//     console.log(`Movement ${i + 1}: You deposited ${mov}`);
+//   } else {
+//     `Movement ${i + 1}: You withdrew ${Math.abs(mov)}`;
+//   }
+// });
+
+// // MAPS
+
+// currencies.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`);
+// });
+
+// // SETS
+
+// const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+// console.log(currenciesUnique);
+
+// currenciesUnique.forEach(function (value, _, map) {
+//   console.log(`${value}: ${value}`);
+// });
