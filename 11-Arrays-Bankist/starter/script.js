@@ -61,6 +61,25 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    const html = `
+        <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+          <div class="movements__value">${mov}</div>
+        </div>
+    `;
+
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -72,6 +91,82 @@ const currencies = new Map([
   ['EUR', 'Euro'],
   ['GBP', 'Pound sterling'],
 ]);
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, movement) => acc + movement, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+const euroToUSD = 1.1;
+
+/////////////////////////////////////////////////
+// 152. The reduce Method
+
+const balance = movements.reduce(function (acc, current, index) {
+  console.log(`Iteration ${index}: ${acc}`);
+  return acc + current;
+}, 0);
+
+console.log(balance);
+
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
+
+/////////////////////////////////////////////////
+// 152. The filter Method
+
+// const deposits = movements.filter(function (movement) {
+//   return movement > 0;
+// });
+
+// const depositsFor = [];
+// for (const movement of movements) if (movement > 0) depositsFor.push(movement);
+
+// const withdrawals = movements.filter(function (movement) {
+//   return movement < 0;
+// });
+// console.log(withdrawals);
+
+/////////////////////////////////////////////////
+// 151. Computing usernames
+
+// const user = 'Steven Thomas Williams';
+
+// const createUsernames = function (accs) {
+//   accs.forEach(acc => {
+//     acc.username = acc.owner
+//       .toLowerCase()
+//       .split(' ')
+//       .map(name => name[0])
+//       .join('');
+//   });
+// };
+// createUsernames(accounts);
+// console.log(accounts);
+
+/////////////////////////////////////////////////
+// 150. The map Method
+
+// const movementsUSD = movements.map(function (movement) {
+//   return movement * euroToUSD;
+// });
+
+// const movementsUSD = movements.map(movement => movement * euroToUSD);
+
+// console.log(movements);
+// console.log(movementsUSD);
+
+// const movementsUSDfor = [];
+// for (const movement of movements) movementsUSDfor.push(movement * euroToUSD);
+// console.log(movementsUSDfor);
+
+// const movementsDescriptions = movements.map(
+//   (movement, i) =>
+//     `Movement ${i + 1}: You ${
+//       movement > 0 ? 'deposited' : 'withdrew'
+//     } ${Math.abs(movement)}`
+// );
 
 // const currencies = new Map([
 //   ['USD', 'United States dollar'],
